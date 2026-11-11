@@ -1,4 +1,4 @@
-# Expense Tracker App
+# Nepali News Headline Generation 
 
 ## Overview
 This is an AI based mobile application for generating Nepali news headlines.
