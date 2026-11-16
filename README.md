@@ -23,6 +23,10 @@ the first half of the project was building one.
 
 ## Dataset
 
+The corpus is published on Kaggle:
+**[Nepali News Dataset](https://www.kaggle.com/datasets/bibekpaneru1/news-dataset)** — around
+86,600 records, 454 MB, a single CSV with three columns: `URL`, `news_article` and `headline`.
+
 86,628 article/headline pairs scraped from Online Khabar, BBC Nepali and Ratopati. The headline
 is the one a human editor actually wrote, which is what makes the pairs usable as supervision.
 
@@ -44,6 +48,13 @@ them. Tokenised with `MBart50TokenizerFast`, article truncated to 512 tokens and
 
 The category distribution is heavily skewed towards economy and sports, which is a real
 limitation; the model is noticeably better on those two than on opinion pieces.
+
+If you are starting from the raw Kaggle file rather than our processed version, two things need
+handling first. Some rows have a null or empty `news_article`, and because the scrape ran across
+several portals and time windows there are duplicate URLs and repeated headlines in there, so
+deduplicate before splitting or you will leak between train and validation. Many articles also
+open with a dateline like `काठमाडौँ ।`, which you can keep or strip depending on what you are
+doing with them.
 
 ## Training setup
 
